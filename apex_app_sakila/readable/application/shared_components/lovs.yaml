@@ -1,0 +1,138 @@
+---
+- # ====== List of Values: CITY.CITY ===========================
+  id: 101240031744424754376
+  identification: 
+    name: CITY.CITY
+
+  subscription: 
+    version-number: 1
+
+  source: 
+    location: Local Database
+    type: Table / View
+    table-owner: Parsing Schema
+    table-name: CITY
+
+  column-mapping: 
+    return: CITY_ID
+    display: CITY
+    default-sort: CITY
+    sort-direction: Ascending (Nulls Last)
+
+- # ====== List of Values: STORE.STORE_ID ======================
+  id: 115736354718561325518
+  identification: 
+    name: STORE.STORE_ID
+
+  subscription: 
+    version-number: 1
+
+  source: 
+    location: Local Database
+    type: Table / View
+    table-owner: Parsing Schema
+    table-name: STORE
+
+  column-mapping: 
+    return: STORE_ID
+    default-sort: STORE_ID
+    sort-direction: Ascending (Nulls Last)
+
+- # ====== List of Values: ADDRESS.ADDRESS =====================
+  id: 115736356685586325520
+  identification: 
+    name: ADDRESS.ADDRESS
+
+  subscription: 
+    version-number: 1
+
+  source: 
+    location: Local Database
+    type: Table / View
+    table-owner: Parsing Schema
+    table-name: ADDRESS
+
+  column-mapping: 
+    return: ADDRESS_ID
+    display: ADDRESS
+    default-sort: ADDRESS
+    sort-direction: Ascending (Nulls Last)
+
+- # ====== List of Values: INVENTORY.INVENTORY_ID ==============
+  id: 120397214618637940195
+  identification: 
+    name: INVENTORY.INVENTORY_ID
+
+  subscription: 
+    version-number: 1
+
+  source: 
+    location: Local Database
+    type: Table / View
+    table-owner: Parsing Schema
+    table-name: INVENTORY
+
+  column-mapping: 
+    return: INVENTORY_ID
+    default-sort: INVENTORY_ID
+    sort-direction: Ascending (Nulls Last)
+
+- # ====== List of Values: CUSTOMER.FIRST_NAME =================
+  id: 120397214835648940195
+  identification: 
+    name: CUSTOMER.FIRST_NAME
+
+  subscription: 
+    version-number: 1
+
+  source: 
+    location: Local Database
+    type: Table / View
+    table-owner: Parsing Schema
+    table-name: CUSTOMER
+
+  column-mapping: 
+    return: CUSTOMER_ID
+    display: FIRST_NAME
+    default-sort: FIRST_NAME
+    sort-direction: Ascending (Nulls Last)
+
+- # ====== List of Values: STAFF.FIRST_NAME ====================
+  id: 120397215119939940196
+  identification: 
+    name: STAFF.FIRST_NAME
+
+  subscription: 
+    version-number: 1
+
+  source: 
+    location: Local Database
+    type: Table / View
+    table-owner: Parsing Schema
+    table-name: STAFF
+
+  column-mapping: 
+    return: STAFF_ID
+    display: FIRST_NAME
+    default-sort: FIRST_NAME
+    sort-direction: Ascending (Nulls Last)
+
+- # ====== List of Values: LANGUAGE.LANGUAGE_ID ================
+  id: 123257908370843922770
+  identification: 
+    name: LANGUAGE.LANGUAGE_ID
+
+  subscription: 
+    version-number: 1
+
+  source: 
+    location: Local Database
+    type: Table / View
+    table-owner: Parsing Schema
+    table-name: LANGUAGE
+
+  column-mapping: 
+    return: LANGUAGE_ID
+    default-sort: LANGUAGE_ID
+    sort-direction: Ascending (Nulls Last)
+
