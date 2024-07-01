@@ -1,0 +1,1040 @@
+---
+# ====== Page: update_customer_form ==========================
+id: 14
+identification: 
+  name: update_customer_form
+  alias: UPDATE-CUSTOMER-FORM
+  title: update_customer_form
+
+appearance: 
+  page-mode: Modal Dialog
+  dialog-template: Theme Default
+  template-options: 
+  - '#DEFAULT#'
+
+dialog: 
+  chained: true
+
+navigation-menu: 
+  override-user-interface-level: false
+
+navigation: 
+  cursor-focus: Do not focus cursor
+  warn-on-unsaved-changes: true
+
+security: 
+  authentication: Page Requires Authentication
+  deep-linking: Application Default
+  page-access-protection: Arguments Must Have Checksum
+  form-auto-complete: Off
+  browser-cache: Application Default
+
+session-management: 
+  rejoin-sessions: Application Default
+
+advanced: 
+  enable-duplicate-page-submissions: Yes - Enable page to be re-posted
+  reload-on-submit: Only for Success
+
+server-cache: 
+  caching: Disabled
+
+regions: 
+- # ====== Region: update_customer_form ========================
+  id: 119984335305635056929
+  identification: 
+    name: update_customer_form
+    type: Form
+
+  source: 
+    location: Local Database
+    type: SQL Query
+    sql-query: |
+      SELECT c.active, c.CUSTOMER_ID, c.STORE_ID, c.FIRST_NAME, c.LAST_NAME, c.EMAIL, a.ADDRESS,
+      a.ADDRESS2, a.DISTRICT, a.POSTAL_CODE, a.PHONE, ci.CITY
+      from customer c inner join address a on c.address_id=a.address_id inner join 
+      city ci on ci.city_id=a.city_id;
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Blank with Attributes
+    template-options: 
+    - '#DEFAULT#'
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    edit: 
+      enabled: true
+      allowed-operations: 
+      - Add Row
+      - Update Row
+      - Delete Row
+      lost-update-type: Row Values
+
+- # ====== Region: Buttons =====================================
+  id: 119984343418390056935
+  identification: 
+    name: Buttons
+    type: Static Content
+
+  layout: 
+    sequence: 20
+    parent-region: No Parent
+    slot: REGION_POSITION_03
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Buttons Container
+    template-options: 
+    - '#DEFAULT#'
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: Text (escape special characters)
+      show-line-breaks: true
+
+page-items: 
+- # ====== Page Item: P14_ACTIVE ===============================
+  id: 119982434320612024703
+  identification: 
+    name: P14_ACTIVE
+    type: Text Field
+
+  label: 
+    label: Active
+    alignment: Left
+
+  settings: 
+    subtype: Text
+    trim-spaces: Leading and Trailing
+    text-case: NO CHANGE
+    submit-when-enter-pressed: false
+    disabled: false
+
+  layout: 
+    sequence: 150
+    region: update_customer_form # 119984335305635056929
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Floating
+    template-options: 
+    - '#DEFAULT#'
+    width: 30
+
+  validation: 
+    value-required: true
+    maximum-length: 1
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: update_customer_form # 119984335305635056929
+    column: ACTIVE
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    storage: Per Request (Memory Only)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P14_STORE_ID =============================
+  id: 119982434941326024709
+  identification: 
+    name: P14_STORE_ID
+    type: Combobox
+
+  label: 
+    label: Store Id
+    alignment: Left
+
+  settings: 
+    multi-selection: false
+    maximum-values-in-list: 7
+    fetch-on-search: false
+
+  search: 
+    match-type: Contains
+    case-sensitive: false
+    minimum-characters: 0
+
+  multiple-values: 
+    type: No
+
+  layout: 
+    sequence: 70
+    region: update_customer_form # 119984335305635056929
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Floating
+    template-options: 
+    - '#DEFAULT#'
+    width: 30
+
+  validation: 
+    value-required: false
+
+  list-of-values: 
+    type: SQL Query
+    sql-query: select store_id from store;
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Session (Persistent)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P14_CITY =================================
+  id: 119982435054868024710
+  identification: 
+    name: P14_CITY
+    type: Combobox
+
+  label: 
+    label: New
+    alignment: Left
+
+  settings: 
+    multi-selection: false
+    maximum-values-in-list: 7
+    fetch-on-search: false
+
+  search: 
+    match-type: Contains
+    case-sensitive: false
+    minimum-characters: 0
+
+  multiple-values: 
+    type: No
+
+  layout: 
+    sequence: 140
+    region: update_customer_form # 119984335305635056929
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: false
+    column: Automatic
+    new-column: false
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Floating
+    template-options: 
+    - '#DEFAULT#'
+    width: 30
+
+  validation: 
+    value-required: false
+
+  list-of-values: 
+    type: SQL Query
+    sql-query: select city from city;
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Session (Persistent)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P14_CUSTOMER_ID ==========================
+  id: 119984335758724056930
+  identification: 
+    name: P14_CUSTOMER_ID
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 30
+    region: update_customer_form # 119984335305635056929
+    slot: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: update_customer_form # 119984335305635056929
+    column: CUSTOMER_ID
+    data-type: NUMBER
+    query-only: false
+    primary-key: true
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Checksum Required - Session Level
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P14_FIRST_NAME ===========================
+  id: 119984336524056056931
+  identification: 
+    name: P14_FIRST_NAME
+    type: Text Field
+
+  label: 
+    label: First Name
+    alignment: Left
+
+  settings: 
+    subtype: Text
+    trim-spaces: None
+    text-case: NO CHANGE
+    submit-when-enter-pressed: false
+    disabled: false
+
+  layout: 
+    sequence: 40
+    region: update_customer_form # 119984335305635056929
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Required - Floating
+    template-options: 
+    - '#DEFAULT#'
+    width: 32
+
+  validation: 
+    value-required: true
+    maximum-length: 45
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: update_customer_form # 119984335305635056929
+    column: FIRST_NAME
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    storage: Per Request (Memory Only)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P14_LAST_NAME ============================
+  id: 119984336921319056931
+  identification: 
+    name: P14_LAST_NAME
+    type: Text Field
+
+  label: 
+    label: Last Name
+    alignment: Left
+
+  settings: 
+    subtype: Text
+    trim-spaces: None
+    text-case: NO CHANGE
+    submit-when-enter-pressed: false
+    disabled: false
+
+  layout: 
+    sequence: 50
+    region: update_customer_form # 119984335305635056929
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Required - Floating
+    template-options: 
+    - '#DEFAULT#'
+    width: 32
+
+  validation: 
+    value-required: true
+    maximum-length: 45
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: update_customer_form # 119984335305635056929
+    column: LAST_NAME
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    storage: Per Request (Memory Only)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P14_EMAIL ================================
+  id: 119984337354586056931
+  identification: 
+    name: P14_EMAIL
+    type: Text Field
+
+  label: 
+    label: Email
+    alignment: Left
+
+  settings: 
+    subtype: Text
+    trim-spaces: None
+    text-case: NO CHANGE
+    submit-when-enter-pressed: false
+    disabled: false
+
+  layout: 
+    sequence: 60
+    region: update_customer_form # 119984335305635056929
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Floating
+    template-options: 
+    - '#DEFAULT#'
+    width: 32
+
+  validation: 
+    value-required: false
+    maximum-length: 50
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: update_customer_form # 119984335305635056929
+    column: EMAIL
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    storage: Per Request (Memory Only)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P14_ADDRESS ==============================
+  id: 119984337745659056932
+  identification: 
+    name: P14_ADDRESS
+    type: Text Field
+
+  label: 
+    label: Address
+    alignment: Left
+
+  settings: 
+    subtype: Text
+    trim-spaces: None
+    text-case: NO CHANGE
+    submit-when-enter-pressed: false
+    disabled: false
+
+  layout: 
+    sequence: 90
+    region: update_customer_form # 119984335305635056929
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Required - Floating
+    template-options: 
+    - '#DEFAULT#'
+    width: 32
+
+  validation: 
+    value-required: true
+    maximum-length: 50
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: update_customer_form # 119984335305635056929
+    column: ADDRESS
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    storage: Per Request (Memory Only)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P14_ADDRESS2 =============================
+  id: 119984338182030056932
+  identification: 
+    name: P14_ADDRESS2
+    type: Text Field
+
+  label: 
+    label: Address2
+    alignment: Left
+
+  settings: 
+    subtype: Text
+    trim-spaces: None
+    text-case: NO CHANGE
+    submit-when-enter-pressed: false
+    disabled: false
+
+  layout: 
+    sequence: 100
+    region: update_customer_form # 119984335305635056929
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Floating
+    template-options: 
+    - '#DEFAULT#'
+    width: 32
+
+  validation: 
+    value-required: false
+    maximum-length: 50
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: update_customer_form # 119984335305635056929
+    column: ADDRESS2
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    storage: Per Request (Memory Only)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P14_DISTRICT =============================
+  id: 119984338533227056932
+  identification: 
+    name: P14_DISTRICT
+    type: Text Field
+
+  label: 
+    label: District
+    alignment: Left
+
+  settings: 
+    subtype: Text
+    trim-spaces: None
+    text-case: NO CHANGE
+    submit-when-enter-pressed: false
+    disabled: false
+
+  layout: 
+    sequence: 110
+    region: update_customer_form # 119984335305635056929
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Floating
+    template-options: 
+    - '#DEFAULT#'
+    width: 32
+
+  validation: 
+    value-required: false
+    maximum-length: 20
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: update_customer_form # 119984335305635056929
+    column: DISTRICT
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    storage: Per Request (Memory Only)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P14_POSTAL_CODE ==========================
+  id: 119984338961605056932
+  identification: 
+    name: P14_POSTAL_CODE
+    type: Text Field
+
+  label: 
+    label: Postal Code
+    alignment: Left
+
+  settings: 
+    subtype: Text
+    trim-spaces: None
+    text-case: NO CHANGE
+    submit-when-enter-pressed: false
+    disabled: false
+
+  layout: 
+    sequence: 120
+    region: update_customer_form # 119984335305635056929
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Floating
+    template-options: 
+    - '#DEFAULT#'
+    width: 32
+
+  validation: 
+    value-required: false
+    maximum-length: 10
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: update_customer_form # 119984335305635056929
+    column: POSTAL_CODE
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    storage: Per Request (Memory Only)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P14_PHONE ================================
+  id: 119984339318215056933
+  identification: 
+    name: P14_PHONE
+    type: Text Field
+
+  label: 
+    label: Phone
+    alignment: Left
+
+  settings: 
+    subtype: Text
+    trim-spaces: None
+    text-case: NO CHANGE
+    submit-when-enter-pressed: false
+    disabled: false
+
+  layout: 
+    sequence: 130
+    region: update_customer_form # 119984335305635056929
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Floating
+    template-options: 
+    - '#DEFAULT#'
+    width: 32
+
+  validation: 
+    value-required: false
+    maximum-length: 20
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: update_customer_form # 119984335305635056929
+    column: PHONE
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    storage: Per Request (Memory Only)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+buttons: 
+- # ====== Button: New =========================================
+  id: 119982434701552024707
+  identification: 
+    button-name: New
+    label: UPDATE
+
+  layout: 
+    sequence: 10
+    region: Buttons # 119984343418390056935
+    slot: CREATE
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Text
+    hot: true
+    template-options: 
+    - '#DEFAULT#'
+
+  behavior: 
+    action: Submit Page
+    execute-validations: true
+    show-processing: false
+    warn-on-unsaved-changes: Do Not Check
+
+- # ====== Button: CANCEL ======================================
+  id: 119984343845124056935
+  identification: 
+    button-name: CANCEL
+    label: Cancel
+
+  layout: 
+    sequence: 30
+    region: Buttons # 119984343418390056935
+    slot: CLOSE
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Text
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+
+  behavior: 
+    action: Defined by Dynamic Action
+    execute-validations: true
+
+dynamic-actions: 
+- # ====== Dynamic Action: Cancel Dialog =======================
+  id: 119984343944142056935
+  identification: 
+    name: Cancel Dialog
+
+  execution: 
+    sequence: 10
+    event-scope: Static
+    type: Immediate
+
+  when: 
+    event: Click
+    selection-type: Button
+    button: CANCEL # 119984343845124056935
+
+  actions: 
+  - # ====== Action: Cancel Dialog ===============================
+    id: 119984344786641056936
+    identification: 
+      action: Cancel Dialog
+
+    execution: 
+      sequence: 10
+      event: Cancel Dialog # 119984343944142056935
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+
+validations: 
+- # ====== Validation: active_validation =======================
+  id: 119982434638978024706
+  identification: 
+    name: active_validation
+
+  execution: 
+    sequence: 10
+
+  validation: 
+    type: Item matches Regular Expression
+    item: P14_ACTIVE
+    regular-expression: ^[01]$
+    always-execute: true
+
+  error: 
+    error-message: Active can be only 0 or 1
+    display-location: Inline with Field and in Notification
+    associated-item: P14_ACTIVE # 119982434320612024703
+
+processes: 
+- # ====== Process: update_customer ============================
+  id: 119982434222549024702
+  identification: 
+    name: update_customer
+    type: Execute Code
+    execution-chain: None
+
+  source: 
+    location: Local Database
+    language: PL/SQL
+    pl/sql-code: |
+      DECLARE
+      v_address_id integer;
+      v_address2 varchar2(255);
+      v_district varchar2(255);
+      v_phone varchar(255);
+      v_email_exist boolean;
+      v_city_id integer;
+      BEGIN
+      v_address2:=:P14_ADDRESS2;
+      v_district:=:P14_DISTRICT;
+      v_phone:=:P14_PHONE;
+      if (v_address2='') then v_address2:=NULL; end if;
+      if (v_phone='') then v_phone:=null; end if;
+      if (v_district='') then v_district:=null; end if;
+      
+      v_email_exist:=email_exist_check(:P14_EMAIL);
+      if(v_email_exist=true)then
+          CUSTOMER_MANAGMENT.ADD_NEW_ADDRESS(:P14_ADDRESS, :P14_CITY, :P14_POSTAL_CODE, v_phone, v_address2, v_district);
+      v_city_id:=FIND_CITY_BY_NAME(:P14_CITY);
+          if (v_phone is null and v_address2 is null and v_district is null) then
+                  select min(address_id) into v_address_id from address where address=:P14_ADDRESS and city_id=v_city_id and postal_code=:P14_POSTAL_CODE and phone is null and address2 is null and district is null;
+              elsif(v_phone is null and v_address2 is null and v_district  is not null) then
+                  select min(address_id) into v_address_id from address where address=:P14_ADDRESS and city_id=v_city_id and postal_code=:P14_POSTAL_CODE and district=v_district and phone is null and address2 is null;
+              elsif(v_phone is null and v_address2  is not null and v_district is null) then
+                  select min(address_id) into v_address_id from address where address=:P14_ADDRESS and city_id=v_city_id and postal_code=:P14_POSTAL_CODE and address2=v_address2 and phone is null and district is null;
+              elsif(v_phone  is not null and v_address2  is null and v_district  is null) then
+                  select min(address_id) into v_address_id from address where address=:P14_ADDRESS and city_id=v_city_id and postal_code=:P14_POSTAL_CODE and phone=v_phone and address2 is null and district is null;
+              elsif(v_phone  is null and v_address2  is not null and v_district  is not null) then
+                  select min(address_id) into v_address_id from address where address=:P14_ADDRESS and city_id=v_city_id and postal_code=:P14_POSTAL_CODE and district=v_district and address2=v_address2 and phone is null;
+              elsif(v_phone  is not null and v_address2  is null and v_district  is not null) then
+                  select min(address_id) into v_address_id from address where address=:P14_ADDRESS and city_id=v_city_id and postal_code=:P14_POSTAL_CODE and district=v_district and phone=v_phone and address2 is null;
+              elsif(v_phone  is not null and v_address2  is not null and v_district  is null) then
+                  select min(address_id) into v_address_id from address where address=:P14_ADDRESS and city_id=v_city_id and postal_code=:P14_POSTAL_CODE and address2=v_address2 and phone=v_phone and district is null;
+              elsif(v_phone  is not null and v_address2  is not null and v_district  is not null) then
+                  SELECT min(address_id) into v_address_id from address where address=:P14_ADDRESS and address2=v_address2 and district=v_district and city_id=v_city_id and postal_code=:P14_POSTAL_CODE and phone=v_phone;
+              end if;
+      
+          UPDATE customer set FIRST_NAME=:P14_FIRST_NAME, LAST_NAME=:P14_LAST_NAME, EMAIL=:P14_EMAIL, ADDRESS_ID=v_address_id, STORE_ID=:P14_STORE_ID, ACTIVE=:P14_ACTIVE, LAST_UPDATE=SYSDATE WHERE CUSTOMER_ID=:P14_CUSTOMER_ID;
+          COMMIT;
+      else raise_application_error(-20131,'Email already exsist!');
+      end if;
+      END;
+
+  execution: 
+    sequence: 60
+    point: Processing
+    run-process: Once Per Page Visit (default)
+
+  success-message: 
+    success-message: Customer updated!
+
+  error: 
+    display-location: Inline in Notification
+
+  server-side-condition: 
+    when-button-pressed: New # 119982434701552024707
+
+- # ====== Process: Initialize form update_customer_form =======
+  id: 119984346480747056937
+  identification: 
+    name: Initialize form update_customer_form
+    type: Form - Initialization
+    execution-chain: None
+    form-region: update_customer_form # 119984335305635056929
+
+  execution: 
+    sequence: 10
+    point: Before Header
+    run-process: Once Per Page Visit (default)
+
+- # ====== Process: Close Dialog ===============================
+  id: 119984347215770056937
+  identification: 
+    name: Close Dialog
+    type: Close Dialog
+    execution-chain: None
+
+  settings: 
+    show-success-messages: true
+
+  execution: 
+    sequence: 50
+    point: Processing
+    run-process: Once Per Page Visit (default)
+
+  error: 
+    display-location: Inline in Notification
+
+  server-side-condition: 
+    type: Request is contained in Value
+    value: CREATE,SAVE,DELETE
+
